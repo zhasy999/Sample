@@ -25,14 +25,14 @@ public class GarageController {
         return (garage + " Already exist");
     }
 
-    @GetMapping("/{id}/brand")
-    public Brand findCarBrandById(@PathVariable("id") Long Id) { return garageService.findBrandById(Id);}
+    @GetMapping("/brand/{id}")
+    public Brand findCarBrandById(@PathVariable Long id) { return garageService.findBrandById(id);}
 
-    @GetMapping("/{id}/class")
-    public Class findCarClassById(@PathVariable("id") Long Id) { return garageService.findClassById(Id);}
+    @GetMapping("/class/{id}")
+    public Class findCarClassById(@PathVariable Long id) { return garageService.findClassById(id);}
 
-    @GetMapping("/{id}/car")
-    public Car findCarCharacteristicsById(@PathVariable("id") Long Id) { return garageService.findCharacteristicsById(Id);}
+    @GetMapping("/car/{id}")
+    public Car findCarCharacteristicsById(@PathVariable Long id) { return garageService.findCharacteristicsById(id);}
 
     @GetMapping
     public List<Garage> allCarsInGarage(){

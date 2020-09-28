@@ -41,19 +41,19 @@ public class GarageService {
     @Transactional
     public Brand findBrandById(Long id) {
         return restTemplate.getForObject(
-                "localhost:8084/brand/" + id,
+                "http://localhost:8084/brand/" + id,
                 Brand.class);
     }
     @Transactional
     public Class findClassById(Long id) {
         return restTemplate.getForObject(
-                "localhost:8083/class/" + id,
+                "http://localhost:8083/class/" + id,
                 Class.class);
     }
     @Transactional
     public Car findCharacteristicsById(Long id) {
         return restTemplate.getForObject(
-                "localhost:8082/car/" + id,
+                "http://localhost:8082/car/" + id,
                 Car.class);
     }
 
