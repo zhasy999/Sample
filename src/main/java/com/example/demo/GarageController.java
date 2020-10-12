@@ -1,13 +1,18 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
-@RequestMapping("/garage")
+@RequestMapping(value="/garage",method=RequestMethod.POST)
 public class GarageController {
+
+
 
     @Autowired
     private GarageService garageService;
@@ -37,6 +42,11 @@ public class GarageController {
     @GetMapping
     public List<Garage> allCarsInGarage(){
         return garageService.findAll();
+    }
+
+    @RequestMapping(path="/addcar", method=RequestMethod.POST)
+    public void CreateCar(@RequestParam(name="title") String title, @RequestParam(name="type") String type, @RequestParam(name="power") String power){
+        garageService.CreateCar(title,type,power);
     }
 
     @GetMapping("/{id}")

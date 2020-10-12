@@ -1,10 +1,15 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class GarageService {
@@ -29,7 +34,7 @@ public class GarageService {
 
     @Transactional
     public Garage findVehicleById(Long id) {
-        return garageRepo.findById(id).get();
+        return garageRepo.findCarById(id);
     }
 
     @Transactional
@@ -55,6 +60,17 @@ public class GarageService {
         return restTemplate.getForObject(
                 "http://localhost:8082/car/" + id,
                 Car.class);
+    }
+    @Transactional
+    public void CreateCar(String title,String type,String power) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        String url = "http://localhost:8082/car/create?title="+title+"&type="+type+"&power=" + power;;
+
+        Car car=new Car(title,type,power);
+
+        restTemplate.postForObject(url,car,Car.class);
+
     }
 
 

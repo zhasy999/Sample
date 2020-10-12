@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(name = "cars")
+@Table(name = "Garage")
 public class Garage {
 
     @Id
@@ -19,7 +19,11 @@ public class Garage {
 
     @Column
     private Long carId;
+
+    @Column
     private Long classId;
+
+    @Column
     private Long brandId;
 
     public Garage(Long carId, Long classId, Long brandId) {

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+        :root {
+            /* Base font size */
+            font-size: 10px;
+
+            /* Heading height variable*/
+            --heading-height: 20em;
+        }
+
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            min-height: 100vh;
+            background-color: #101010;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            height: var(--heading-height);
+        }
+
+        /* Create angled background with 'before' pseudo-element */
+        header::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 6em;
+            width: 100%;
+            height: calc(var(--heading-height) + 10em);
+            z-index: -1;
+            transform: skewY(-3.5deg);
+            background:
+                    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+                    url(https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80) no-repeat center,
+                    linear-gradient(#4e4376, #2b5876);
+            background-size: cover;
+            border-bottom: .2em solid #fff;
+        }
+        h1 {
+            font-size: calc(2.8em + 2.6vw);
+            font-weight: 700;
+            letter-spacing: .01em;
+            padding: 1rem 0 0 4.5rem;
+            text-shadow: .022em .022em .022em #111;
+            color: #fff;
+        }
+        h2 {
+            font-size: calc(1.8em + 1.6vw);
+            font-weight: 500;
+            letter-spacing: .01em;
+            padding: 1rem 0 0 4.5rem;
+            text-shadow: .022em .022em .022em #111;
+            color: #fff;
+        }
+        main {
+            padding: calc(var(--heading-height) + 1.5vw) 4em 0;
+        }
+
+        label {
+            font-size: calc(2em + .25vw);
+            font-weight: 400;
+            line-height: 2;
+            margin-bottom: 1.5em;
+            color: #fcfcfc;
+        }
+        [type=radio] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* IMAGE STYLES */
+        [type=radio] + img {
+            cursor: pointer;
+        }
+
+        /* CHECKED STYLES */
+        [type=radio]:checked + img {
+            outline: 2px solid #f00;
+        }
+
+        .type{
+            padding-top: 15px;
+            float:right;
+            text-align: center;
+            border: 3px solid gray;
+            margin: auto;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to car Stock</h1>
+</header>
+<script>
+    var c=24;
+    async function getData() {
+    var types = document.getElementsByName('test');
+    var type_value;
+    for(var i = 0; i < types.length; i++){
+        if(types[i].checked){
+            type_value = types[i].value;
+        }
+    }
+
+    var title=document.getElementById("title").value
+    var power=document.getElementById("power").value
+        const response = await fetch(`http://localhost:8081/garage/addcar?title=${title}&type=${type_value}&power=${power}`, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+        });
+
+
+    var sb1 = document.querySelector('#brands').value
+    var sb2 = document.querySelector('#classes').value
+    const response1 = await fetch(`http://localhost:8081/garage/create?carId=${c}&classId=${sb1}&brandId=${sb2}`, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+    });
+        c=c+1;
+    }
+
+
+
+
+
+</script>
+<main>
+    <div class="type">
+        <label>
+            <input type="radio" name="test" value="van" checked>
+            <img src="images/mini.jpg" width="300" height="170">
+        </label>
+
+        <label>
+            <input type="radio" name="test" value="passanger">
+            <img src="images/legko.jpg" width="300" height="170">
+        </label>
+
+        <label>
+            <input type="radio" name="test" value="pickup">
+            <img src="images/jeep.jpg" width="300" height="150">
+        </label>
+    </div>
+    <div>
+    <h2>Add a new car </h2>
+    <label for="brands">Choose a car brand :  </label>
+    <select name="brands" id="brands">
+        <option value="2">Volvo</option>
+        <option value="3">Saab</option>
+        <option value="4">Mercedes</option>
+        <option value="5">Audi</option>
+        <option value="6">Volkswagen</option>
+        <option value="7">Ferrari</option>
+        <option value="8">Maserati</option>
+    </select>
+    <br>
+    <label for="classes">Choose a car class : </label>
+    <select name="classes" id="classes">
+        <option value="1">A-class</option>
+        <option value="2">B-class</option>
+        <option value="3">C-class</option>
+        <option value="4">D-class</option>
+        <option value="5">E-class</option>
+    </select>
+    <br>
+    <label for="title">Enter car title : </label>
+    <textarea id="title" cols="15" rows="1"></textarea>
+        <br>
+
+        <label for="power">Enter car power : </label>
+        <textarea id="power" cols="5" rows="1"></textarea>
+    <br><br><br><br><br>
+    <p><input type="submit" onclick="getData()" value="Add">
+        <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+    </div>
+
+    <a href="carInfo.html">Car Info</a>
+</main>
+
+</body>
+</html>

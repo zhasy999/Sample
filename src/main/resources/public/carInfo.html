@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+        :root {
+            /* Base font size */
+            font-size: 10px;
+
+            /* Heading height variable*/
+            --heading-height: 20em;
+        }
+
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            min-height: 100vh;
+            background-color: #101010;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            height: var(--heading-height);
+        }
+
+        /* Create angled background with 'before' pseudo-element */
+        header::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 6em;
+            width: 100%;
+            height: calc(var(--heading-height) + 10em);
+            z-index: -1;
+            transform: skewY(-3.5deg);
+            background:
+                    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+                    url(https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80) no-repeat center,
+                    linear-gradient(#4e4376, #2b5876);
+            background-size: cover;
+            border-bottom: .2em solid #fff;
+        }
+        h1 {
+            font-size: calc(2.8em + 2.6vw);
+            font-weight: 700;
+            letter-spacing: .01em;
+            padding: 1rem 0 0 4.5rem;
+            text-shadow: .022em .022em .022em #111;
+            color: #fff;
+        }
+        h2 {
+            font-size: calc(1.8em + 1.6vw);
+            font-weight: 500;
+            letter-spacing: .01em;
+            padding: 1rem 0 0 4.5rem;
+            text-shadow: .022em .022em .022em #111;
+            color: #fff;
+        }
+        main {
+            padding: calc(var(--heading-height) + 1.5vw) 4em 0;
+        }
+		        label {
+            font-size: calc(2em + .25vw);
+            font-weight: 400;
+            line-height: 2;
+            margin-bottom: 1.5em;
+            color: #fcfcfc;
+        }
+        </style>
+</head>
+<body>
+  <header>
+  <h1>Car info Service</h1>
+  </header>
+  <script>
+      function toGarage() {
+          var a=document.getElementById("garage").value
+          window.open(`http://localhost:8081/garage/${a}`,"_blank")
+      }
+      function toCar() {
+          var a=document.getElementById("car").value
+          window.open(`http://localhost:8081/garage/car/${a}`,"_blank")
+      }
+      function toBrand() {
+          var a=document.getElementById("brand").value
+          window.open(`http://localhost:8081/garage/brand/${a}`,"_blank")
+      }
+      function toClass() {
+          var a=document.getElementById("class").value
+          window.open(`http://localhost:8081/garage/class/${a}`,"_blank")
+      }
+  </script>
+  <main>
+         <label for="garage">Enter garage place : </label>
+      <textarea id="garage" cols="5" rows="1"></textarea>
+      <p><input type="button" onclick="toGarage()" value="Find">
+          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+
+      <label for="car">Enter car Id : </label>
+      <textarea id="car" cols="5" rows="1"></textarea>
+      <p><input type="button" onclick="toCar()" value="Find">
+          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+
+      <label for="brand">Enter Brand id : </label>
+      <textarea id="brand" cols="5" rows="1"></textarea>
+      <p><input type="button" onclick="toBrand()" value="Find">
+          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+
+      <label for="class">Enter Class id : </label>
+      <textarea id="class" cols="5" rows="1"></textarea>
+      <p><input type="button" onclick="toClass()" value="Find">
+          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+        <section class="res-table">
+        <table id="r-table">
+          <tr>
+            <th>Car title</th>
+            <th>Type: </th>
+            <th>Power: </th>
+            <th>Class: </th>
+            <th>Brand: </th>
+          </tr>
+        </table>
+      </section>
+	</main>
+</body>
+</html>

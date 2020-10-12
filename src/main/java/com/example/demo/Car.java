@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,17 +16,17 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @ApiModelProperty(notes = "This car name")
     private String title;
 
     @Column
     private String type;
 
     @Column
-    private double power;
+    private String power;
 
 
-    public Car(String title, String type, double power) {
+    public Car(String title, String type, String power) {
         this.title = title;
         this.type = type;
         this.power = power;
