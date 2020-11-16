@@ -1,15 +1,16 @@
 package com.example.demo;
 
+import com.example.demo.model.Brand;
+import com.example.demo.model.Car;
+import com.example.demo.model.Class;
+import com.example.demo.model.Garage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class GarageService {

@@ -102,7 +102,7 @@
     <h1>Welcome to car Stock</h1>
 </header>
 <script>
-    var c=24;
+    var c=0;
     async function getData() {
     var types = document.getElementsByName('test');
     var type_value;
@@ -114,7 +114,7 @@
 
     var title=document.getElementById("title").value
     var power=document.getElementById("power").value
-        const response = await fetch(`http://localhost:8081/garage/addcar?title=${title}&type=${type_value}&power=${power}`, {
+        const response = await fetch(`http://localhost:8081/api/garage/addcar?title=${title}&type=${type_value}&power=${power}`, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -129,7 +129,7 @@
 
     var sb1 = document.querySelector('#brands').value
     var sb2 = document.querySelector('#classes').value
-    const response1 = await fetch(`http://localhost:8081/garage/create?carId=${c}&classId=${sb1}&brandId=${sb2}`, {
+    const response1 = await fetch(`http://localhost:8081/api/garage/create?carId=${c}&classId=${sb1}&brandId=${sb2}`, {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',

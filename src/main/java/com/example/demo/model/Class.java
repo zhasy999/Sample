@@ -1,15 +1,17 @@
-package com.example.demo;
+package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @NoArgsConstructor
 @Setter
 @Getter
-public class Brand {
+public class Class {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +20,7 @@ public class Brand {
     @Column(unique=true)
     private String title;
 
-    public Brand(String title) {
+    public Class(String title) {
         this.title = title;
     }
 

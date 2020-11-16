@@ -79,19 +79,19 @@
   <script>
       function toGarage() {
           var a=document.getElementById("garage").value
-          window.open(`http://localhost:8081/garage/${a}`,"_blank")
+          window.open(`http://localhost:8081/api/garage/${a}`,"_blank")
       }
       function toCar() {
           var a=document.getElementById("car").value
-          window.open(`http://localhost:8081/garage/car/${a}`,"_blank")
+          window.open(`http://localhost:8081/api/garage/car/${a}`,"_blank")
       }
       function toBrand() {
           var a=document.getElementById("brand").value
-          window.open(`http://localhost:8081/garage/brand/${a}`,"_blank")
+          window.open(`http://localhost:8081/api/garage/brand/${a}`,"_blank")
       }
       function toClass() {
           var a=document.getElementById("class").value
-          window.open(`http://localhost:8081/garage/class/${a}`,"_blank")
+          window.open(`http://localhost:8081/api/garage/class/${a}`,"_blank")
       }
   </script>
   <main>
@@ -125,6 +125,7 @@
           </tr>
         </table>
       </section>
+      <a href="index.html">Car Stock</a>
 	</main>
 </body>
 </html>

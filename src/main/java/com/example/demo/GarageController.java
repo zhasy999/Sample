@@ -1,18 +1,20 @@
 package com.example.demo;
 
+import com.example.demo.model.Brand;
+import com.example.demo.model.Car;
+import com.example.demo.model.Class;
+import com.example.demo.model.Garage;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
-@RequestMapping(value="/garage",method=RequestMethod.POST)
+@RequestMapping(value="/api/garage",method=RequestMethod.POST)
 public class GarageController {
 
 
@@ -41,20 +43,10 @@ public class GarageController {
     @GetMapping("/class/{id}")
     public Class findCarClassById(@PathVariable Long id) { return garageService.findClassById(id);}
 
-    public Class getFallbackClass() {
-        Class klass =new Class();
-        return klass;
-    }
-
-
 
     @GetMapping("/car/{id}")
     public Car findCarCharacteristicsById(@PathVariable Long id) { return garageService.findCharacteristicsById(id);}
-    public List<Car> getFallbackCar() {
-        List<Car> garageList = new ArrayList<>();
-        garageList.add(new Car());
-        return garageList;
-    }
+
 
 
     @HystrixCommand(fallbackMethod = "getFallbackGarage",

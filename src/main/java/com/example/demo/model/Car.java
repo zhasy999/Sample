@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
