@@ -1,12 +1,14 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.service.GarageService;
 import com.example.demo.model.Brand;
 import com.example.demo.model.Car;
 import com.example.demo.model.Class;
 import com.example.demo.model.Garage;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,31 +38,41 @@ public class GarageController {
         return (garage + " Already exist");
     }
 
+
+
+
+    @HystrixCommand(fallbackMethod = "getFallbackBrand")
     @GetMapping("/brand/{id}")
-    public Brand findCarBrandById(@PathVariable Long id) { return garageService.findBrandById(id);}
+    public void findCarBrandById(@PathVariable Long id) { garageService.findBrandById(id);}
 
+    public void getFallbackBrand(Long id){
+        System.out.println("Brand service fallen");
+    }
 
+    @HystrixCommand(fallbackMethod = "getFallbackClass")
     @GetMapping("/class/{id}")
-    public Class findCarClassById(@PathVariable Long id) { return garageService.findClassById(id);}
+    public ResponseEntity<Class>  findCarClassById(@PathVariable Long id) { return garageService.findClassById(id);}
+    public ResponseEntity<Class> getFallbackClass(Long id){
+        return new ResponseEntity<Class>(new Class("error"),HttpStatus.BAD_REQUEST);
+    }
 
-
+    @HystrixCommand(fallbackMethod = "getFallbackCar")
     @GetMapping("/car/{id}")
-    public Car findCarCharacteristicsById(@PathVariable Long id) { return garageService.findCharacteristicsById(id);}
+    public ResponseEntity<Car> findCarCharacteristicsById(@PathVariable Long id) { return garageService.findCharacteristicsById(id);}
+    public ResponseEntity<Car> getFallbackCar(Long id){
+        return new ResponseEntity<Car>(new Car("error","error","error"),HttpStatus.BAD_REQUEST);
+    }
 
 
-
-    @HystrixCommand(fallbackMethod = "getFallbackGarage",
-            threadPoolProperties = {
-                    @HystrixProperty(name = "coreSize", value = "5"),
-                    @HystrixProperty(name = "maxQueueSize", value = "10")})
+    @HystrixCommand(fallbackMethod = "getFallbackGarage")
     @GetMapping
-    public List<Garage> allCarsInGarage(){
+    public List<String> allCarsInGarage(){
         return garageService.findAll();
     }
 
-    public List<Garage> getFallbackGarage() {
-        List<Garage> garageList = new ArrayList<>();
-        garageList.add(new Garage());
+    public List<String> getFallbackGarage() {
+        List<String> garageList = new ArrayList<>();
+        garageList.add("error 404");
         return garageList;
     }
 
