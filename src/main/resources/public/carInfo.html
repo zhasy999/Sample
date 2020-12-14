@@ -63,69 +63,69 @@
         main {
             padding: calc(var(--heading-height) + 1.5vw) 4em 0;
         }
-		        label {
+        label {
             font-size: calc(2em + .25vw);
             font-weight: 400;
             line-height: 2;
             margin-bottom: 1.5em;
             color: #fcfcfc;
         }
-        </style>
+    </style>
 </head>
 <body>
-  <header>
-  <h1>Car info Service</h1>
-  </header>
-  <script>
-      function toGarage() {
-          var a=document.getElementById("garage").value
-          window.open(`http://localhost:8090/api/garage/${a}`,"_blank")
-      }
-      function toCar() {
-          var a=document.getElementById("car").value
-          window.open(`http://localhost:8090/api/garage/car/${a}`,"_blank")
-      }
-      function toBrand() {
-          var a=document.getElementById("brand").value
-          window.open(`http://localhost:8090/api/garage/brand/${a}`,"_blank")
-      }
-      function toClass() {
-          var a=document.getElementById("class").value
-          window.open(`http://localhost:8090/api/garage/class/${a}`,"_blank")
-      }
-  </script>
-  <main>
-         <label for="garage">Enter garage place : </label>
-      <textarea id="garage" cols="5" rows="1"></textarea>
-      <p><input type="button" onclick="toGarage()" value="Find">
-          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+<header>
+    <h1>Car info Service</h1>
+</header>
+<script>
+    function toGarage() {
+        var a=document.getElementById("garage").value
+        window.open(`http://localhost:8081/api/garage/${a}`,"_blank")
+    }
+    function toCar() {
+        var a=document.getElementById("car").value
+        window.open(`http://localhost:8081/api/garage/car/${a}`,"_blank")
+    }
+    function toBrand() {
+        var a=document.getElementById("brand").value
+        window.open(`http://localhost:8081/api/garage/brand/${a}`,"_blank")
+    }
+    function toClass() {
+        var a=document.getElementById("class").value
+        window.open(`http://localhost:8090/api/garage/class/${a}`,"_blank")
+    }
+</script>
+<main>
+    <label for="garage">Enter garage place : </label>
+    <textarea id="garage" cols="5" rows="1"></textarea>
+    <p><input type="button" onclick="toGarage()" value="Find">
+        <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
 
-      <label for="car">Enter car Id : </label>
-      <textarea id="car" cols="5" rows="1"></textarea>
-      <p><input type="button" onclick="toCar()" value="Find">
-          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+    <label for="car">Enter car Id : </label>
+    <textarea id="car" cols="5" rows="1"></textarea>
+    <p><input type="button" onclick="toCar()" value="Find">
+        <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
 
-      <label for="brand">Enter Brand id : </label>
-      <textarea id="brand" cols="5" rows="1"></textarea>
-      <p><input type="button" onclick="toBrand()" value="Find">
-          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+    <label for="brand">Enter Brand id : </label>
+    <textarea id="brand" cols="5" rows="1"></textarea>
+    <p><input type="button" onclick="toBrand()" value="Find">
+        <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
 
-      <label for="class">Enter Class id : </label>
-      <textarea id="class" cols="5" rows="1"></textarea>
-      <p><input type="button" onclick="toClass()" value="Find">
-          <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
-        <section class="res-table">
+    <label for="class">Enter Class id : </label>
+    <textarea id="class" cols="5" rows="1"></textarea>
+    <p><input type="button" onclick="toClass()" value="Find">
+        <input type="reset" onclick= "window.location.reload();" value="Clear"></p>
+    <section class="res-table">
         <table id="r-table">
-          <tr>
-            <th>Car title</th>
-            <th>Type: </th>
-            <th>Power: </th>
-            <th>Class: </th>
-            <th>Brand: </th>
-          </tr>
+            <tr>
+                <th>Car title</th>
+                <th>Type: </th>
+                <th>Power: </th>
+                <th>Class: </th>
+                <th>Brand: </th>
+            </tr>
         </table>
-      </section>
-      <a href="index.html">Car Stock</a>
-	</main>
+    </section>
+    <a href="index.html">Car Stock</a>
+</main>
 </body>
 </html>
